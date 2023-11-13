@@ -2,85 +2,218 @@
 public class Policy
 {
 //fields
+   private String policyNumber;
+   private String providerName;
+   private String firstName;
+   private String lastName;
+   private int age;
+   private String smokingStatus;
    private double heightInches;
    private double weightPounds;
-   private double totalFee;
-   private double additionalFee;
-   private double bmi;
    /**
    Constructor
    This is the no args constructor that intializes all the fields.
    */
    public Policy()
    {
+      policyNumber = "";
+      providerName = "";
+      firstName = "";
+      lastName = "";
+      age = 0;
+      smokingStatus = "";
       heightInches = 0.0;
       weightPounds = 0.0;
-      totalFee = 0.0;
-      additionalFee = 0.0;
-      bmi = 0.0;
    }
    /**
    Constructor
    accepts the necessary arguements to fully intialize the object
-   @param height, the height is passed into this method
-   @param weight, the weight is passed into the method
+   @param pNumber
+   @param pName
+   @param firstname
+   @param lastname
+   @param age
+   @param sStatus
+   @param height
+   @param weight
    */
-   public Policy(int height, int weight)
+   public Policy(String pNumber, String pName, String firstname, String lastname, int a, String sStatus, double height, double weight)
    {
-      baseFeeInsurancePolicy = 600;
+      policyNumber = pNumber;
+      providerName = pName;
+      firstName = firstname;
+      lastName = lastname;
+      age = a;
+      smokingStatus = sStatus;
       heightInches = height;
       weightPounds = weight;
-
+   
    }
    /**
-   This method allows code outside the class to store a value
-   @param height, this is the height in inches passed into the method
+   This method allows code outside the class to store a value, these are the setters
+   @param pNumber
    */
-   public void setHeightInInches(int height)
+   public void setPolicyNumber(String pNumber)
+   {
+      policyNumber = pNumber;
+   }
+   /**
+   This method allows code outside the class to store a value, these are the setters
+   @param pName
+   */
+
+   public void setProviderName(String pName)
+   {
+      providerName = pName;
+   }
+   /**
+   This method allows code outside the class to store a value, these are the setters
+   @param firstname
+   */
+
+   public void setFirstName(String firstname)
+   {
+      firstName = firstname;
+   }
+   /**
+   This method allows code outside the class to store a value, these are the setters
+   @param lastname
+   */
+
+   public void setLastName(String lastname)
+   {
+      lastName = lastname;
+   }
+   /**
+   This method allows code outside the class to store a value, these are the setters
+   @param age
+   */
+
+   public void setAge(int a)
+   {
+      age = a;
+   }
+   /**
+   This method allows code outside the class to store a value, these are the setters
+   @param sStatus
+   */
+
+   public void setSmokingStatus(String sStatus)
+   {
+      smokingStatus = sStatus;
+   }
+   /**
+   This method allows code outside the class to store a value, these are the setters
+   @param height
+   */
+
+   public void setHeight(double height)
    {
       heightInches = height;
    }
    /**
-   This method allows code outside the class to store a value
-   @param weight, this is the weight in pounds passed into the method
-
+   This method allows code outside the class to store a value, these are the setters
+   @param weight
    */
-   public void setWeightInPounds(int weight)
+
+   public void setWeight(double weight)
    {
       weightPounds = weight;
    }
    /**
-   This method initializes the bmi of the policyholder 
-   @param weight, this is needed for the equation
-   @param height, this is also needed for the equation
-   @return bmi, returns the result of the equation
+   These are the getters that return everything back to the demo class
+   @return policyNumber
    */
-   public int getPolicyholderBmi(int weight, int height)
+   public String getPolicyNumber()
    {
-      bmi = (weight*703)/(height*height);
-      return bmi;
+      return policyNumber;
+   }
+   /**
+   These are the getters that return everything back to the demo class
+   @return providerName
+   */
+   public String getProviderName()
+   {
+      return providerName;
+   }
+   /**
+   These are the getters that return everything back to the demo class
+   @return firstName
+   */
+   public String getFirstName()
+   {
+      return firstName;
+   }
+   /**
+   These are the getters that return everything back to the demo class
+   @return lastName
+   */
+   public String getLastName()
+   {
+      return lastName;
+   }
+   /**
+   These are the getters that return everything back to the demo class
+   @return age
+   */
+   public int getAge()
+   {
+      return age;
+   }
+   /**
+   These are the getters that return everything back to the demo class
+   @return smokingStatus
+   */
+   public String getSmokingStatus()
+   {
+      return smokingStatus;
+   }
+   /**
+   These are the getters that return everything back to the demo class
+   @return height
+   */
+   public double getHeight()
+   {
+      return heightInches;
+   }
+   /**
+   These are the getters that return everything back to the demo class
+   @return weight
+   */
+   public double getWeight()
+   {
+      return weightPounds;
+   }
+   /**
+   This method initializes the bmi of the policyholder
+   @return Bmi
+   */
+   public double getBmi()
+   {
+      return (weightPounds * 703)/( heightInches * heightInches );
    }
    /**
    This methods has the contions of the poilciyholder that effects the price of the insurace policy
-   @param bmi, is used to determine the price
-   @return totalFee, returns the result of the conditions and their price
+   @return price
    */
-   public int priceInsurancePolicy(int bmi)
+   public double getPrice()
    {
-      totalFee = BaseFeeInsurancePolicy;
+      final double baseFee = 600;
+      double price = baseFee;
+   
       if (age > 50)
       {
-         totalFee = totalFee + 75;
+         price += 75;
       }
-      if (smokingStatus.equals("smoker"))
+      if (smokingStatus.equalsIgnoreCase("smoker"))
       {
-         totalFee = totalFee + 100;
+         price += 100;
       }
-      if (bmi > 35)
+      if (getBmi() > 35)
       {
-         additionFee = (bmi - 35)* 20;
+         price += ((getBmi() - 35)* 20);
       }
-      return totalFee;
+      return price;
    }
    
-}   
+}
