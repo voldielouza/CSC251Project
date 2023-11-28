@@ -184,3 +184,23 @@ public class PolicyHolder
    {
       return weightPounds;
    }
+   /**
+      A string representation of a Policyholder
+      @return the string representation of a Policyholder
+   */
+   public String toString()
+   {
+      return String.format("Policy Number: " + policyNumber +  
+             "\nProvider Name: " + providerName +  
+             "\nPolicyholder's First Name: " + firstName +  
+             "\nPolicyholder's Last Name: " + lastName +  
+             "\nPolicyholder's Age: " + age + 
+             "\nPolicyholder's Smoking Status: " + smokingStatus + 
+             "\nPolicyholder's Height: " + heightInches + " inches" + 
+             "\nPolicyholder's Weight: " + weightPounds + " pounds" + 
+             "\nPolicyholder's BMI: %.2f\n", getBMI() + 
+             "\nPolicy Price: $%.2f\n", getPrice()) ;
+   
+   }
+
+}
