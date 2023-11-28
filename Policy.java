@@ -53,6 +53,22 @@ public class Policy
    
    }
    /**
+      Copy Constructor
+      @param obj
+   */
+   public Policy(PolicyHolder obj)
+   {
+      policyNumber = obj.pNumber;
+      providerName =  obj.pName;
+      firstName =  obj.firstname;
+      lastName =  obj.lastname;
+      age =  obj.a;
+      smokingStatus =  obj.sStatus;
+      heightInches =  obj.height;
+      weightPounds =  obj.weight;
+      pInfo = new PolicyHolder( obj.policyInfo);
+   }
+   /**
    This method allows code outside the class to store a value, these are the setters
    @param pNumber
    */
