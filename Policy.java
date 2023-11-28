@@ -10,6 +10,7 @@ public class Policy
    private String smokingStatus;
    private double heightInches;
    private double weightPounds;
+   private Policyholder holderInfo;
    /**
    Constructor
    This is the no args constructor that intializes all the fields.
@@ -36,8 +37,9 @@ public class Policy
    @param sStatus
    @param height
    @param weight
+   @param pInfo - Policy object
    */
-   public Policy(String pNumber, String pName, String firstname, String lastname, int a, String sStatus, double height, double weight)
+   public Policy(String pNumber, String pName, String firstname, String lastname, int a, String sStatus, double height, double weight, PolicyHolder pInfo)
    {
       policyNumber = pNumber;
       providerName = pName;
@@ -47,6 +49,7 @@ public class Policy
       smokingStatus = sStatus;
       heightInches = height;
       weightPounds = weight;
+      pInfo = new PolicyHolder(policyInfo);
    
    }
    /**
@@ -57,6 +60,8 @@ public class Policy
    {
       policyNumber = pNumber;
    }
+
+
    /**
    This method allows code outside the class to store a value, these are the setters
    @param pName
@@ -121,6 +126,14 @@ public class Policy
       weightPounds = weight;
    }
    /**
+      sets the Policyholder object
+      @param policyInfo  
+   */
+   public void setPolicyInfo(PolicyHolder policyInfo)
+   {
+      pInfo = new PolicyHolder (policyInfo);
+   }
+   /**
    These are the getters that return everything back to the demo class
    @return policyNumber
    */
@@ -183,6 +196,14 @@ public class Policy
    public double getWeight()
    {
       return weightPounds;
+   }
+   /**
+      This method returns a the static field
+      @return PolicyHolder
+   */
+   public PolicyHolder getPolicyInfo()
+   {
+      return new PolicyHolder(PolicyInformation);
    }
    /**
    This method initializes the bmi of the policyholder
