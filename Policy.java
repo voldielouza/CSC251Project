@@ -10,6 +10,7 @@ public class Policy
    private String smokingStatus;
    private double heightInches;
    private double weightPounds;
+   private Policyholder holderInfo;
    /**
    Constructor
    This is the no args constructor that intializes all the fields.
@@ -36,8 +37,9 @@ public class Policy
    @param sStatus
    @param height
    @param weight
+   @param pInfo - Policy object
    */
-   public Policy(String pNumber, String pName, String firstname, String lastname, int a, String sStatus, double height, double weight)
+   public Policy(String pNumber, String pName, String firstname, String lastname, int a, String sStatus, double height, double weight, PolicyHolder pInfo)
    {
       policyNumber = pNumber;
       providerName = pName;
@@ -47,7 +49,24 @@ public class Policy
       smokingStatus = sStatus;
       heightInches = height;
       weightPounds = weight;
+      pInfo = new PolicyHolder(policyInfo);
    
+   }
+   /**
+      Copy Constructor
+      @param obj
+   */
+   public Policy(PolicyHolder obj)
+   {
+      policyNumber = obj.pNumber;
+      providerName =  obj.pName;
+      firstName =  obj.firstname;
+      lastName =  obj.lastname;
+      age =  obj.a;
+      smokingStatus =  obj.sStatus;
+      heightInches =  obj.height;
+      weightPounds =  obj.weight;
+      pInfo = new PolicyHolder( obj.policyInfo);
    }
    /**
    This method allows code outside the class to store a value, these are the setters
@@ -57,6 +76,8 @@ public class Policy
    {
       policyNumber = pNumber;
    }
+
+
    /**
    This method allows code outside the class to store a value, these are the setters
    @param pName
@@ -119,6 +140,14 @@ public class Policy
    public void setWeight(double weight)
    {
       weightPounds = weight;
+   }
+   /**
+      sets the Policyholder object
+      @param policyInfo  
+   */
+   public void setPolicyInfo(PolicyHolder policyInfo)
+   {
+      pInfo = new PolicyHolder (policyInfo);
    }
    /**
    These are the getters that return everything back to the demo class
@@ -185,6 +214,14 @@ public class Policy
       return weightPounds;
    }
    /**
+      This method returns a the static field
+      @return PolicyHolder
+   */
+   public PolicyHolder getPolicyInfo()
+   {
+      return new PolicyHolder(PolicyInformation);
+   }
+   /**
    This method initializes the bmi of the policyholder
    @return Bmi
    */
@@ -215,5 +252,24 @@ public class Policy
       }
       return price;
    }
+   /**
+      A string representation of a Policyholder
+      @return the string representation of a Policyholder
+   */
+   public String toString()
+   {
+      return String.format("Policy Number: " + policyNumber +  
+             "\nProvider Name: " + providerName +  
+             "\nPolicyholder's First Name: " + firstName +  
+             "\nPolicyholder's Last Name: " + lastName +  
+             "\nPolicyholder's Age: " + age + 
+             "\nPolicyholder's Smoking Status: " + smokingStatus + 
+             "\nPolicyholder's Height: " + heightInches + " inches" + 
+             "\nPolicyholder's Weight: " + weightPounds + " pounds" + 
+             "\nPolicyholder's BMI: %.2f\n", getBMI() + 
+             "\nPolicy Price: $%.2f\n", getPrice()) ;
+   
+   }
+
    
 }
